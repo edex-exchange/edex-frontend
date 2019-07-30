@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/images/favicon.png" rel="icon" />
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+  <link href="/css/alertify.min.css" rel="stylesheet" />
+  <link href="/css/alertify-bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/black.css" rel="stylesheet" id="stylesheet" />
+  <link href="/css/small.css" rel="stylesheet" media="only screen and (max-device-width: 480px)" />
+  <link href="/css/flag-icon.min.css" rel="stylesheet" id="stylesheet"/>
+
+  <meta property="og:url" content="https://edex.exchange" />
+  <meta property="og:title" content="EDEX | Decentralized Ethereum Token Exchange" />
+  <meta property="og:description"
+    content="EDEX is a decentralized Ethereum Token Exchange with the most ERC20 listings of any exchange. Start trading cryptocurrency today." />
+  <meta property="og:image" content="https://edex.exchange/images/logo.png" />
+
+  <title>EDEX | Decentralized Ethereum Token Exchange</title>
+  <meta name="description"
+    content="EDEX is a decentralized Ethereum Token Exchange with the most ERC20 listings of any exchange. Start trading cryptocurrency today." />
+  <meta name="twitter:widgets:autoload" content="off">
+  <link href="/css/custom_style.css" rel="stylesheet" id="stylesheet" />
+</head>
+
+<body onload="disableToken()" onclick="disableToken()">
+  <div class="page-content">
+    <div class="sidebar-toggle-fade ajs-dimmer"></div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only" id="toggleNavigation" class="trn">toggle_navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <!-- <img src="/images/title.png" alt="I know it's not a fork, it's a trident." /> -->
+            <!-- <h2 style="margin: 8px 40px 0px 12px;color: #3d84d6; font-weight: bold; border: 2px solid #3d84d6;padding: 0px 10px;"> EDEX </h2> -->
+            <img src="/images/main_logo.png" alt="I know it's not a fork, it's a trident." />
+
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown" id="tokensDropdown"></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li style="display: none;" class="dropdown" id="helpDropdown"></li>
+            <li class="dropdown" id="tokenGuidesDropdown"></li>
+            <li class="dropdown" id="connection"></li>
+            <li class="dropdown" id="languages"></li>
+            <li class="dropdown" id="accounts"></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container dark-mode">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="row-container col-md-12">
+            <div class="row-box">
+              <div class="row-header trn top">balance</div>
+              <div id="balance"></div>
+            </div>
+            <div class="volume-sidebar">
+              <!-- <div class="row-header trn">volume</div> -->
+              <div id="volume"></div>
+            </div>
+            <!-- <div class="row-box  padding"></div> -->
+            <div class="row-box scroll">
+              <div id="updates">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row-container col-md-12">
+            <div class="row-box">
+              <div class="row-header trn top">price_chart</div>
+              <div class="row-box nav-header" onclick="window.dispatchEvent(new Event('resize'));">
+                <ul class="nav nav-tabs two columns" role="tablist">
+                  <li role="presentation" class="active"><a href="#chartPrice" aria-controls="chartPrice" role="tab"
+                      data-toggle="tab" class="trn">price</a></li>
+                  <li role="presentation"><a href="#chartDepth" aria-controls="chartDepth" role="tab" data-toggle="tab"
+                      class="trn">depth</a></li>
+                </ul>
+              </div>
+              <div class="row-box height2">
+                <div class="tab-content" style="height: 100%;">
+                  <div role="tabpanel" class="tab-pane active" id="chartPrice"
+                    style="height: 100%; width: 100%; background: #000;"></div>
+                  <div role="tabpanel" class="tab-pane" id="chartDepth"
+                    style="height: 100%; width: 100%; background: #000;"></div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row-header trn">new_order</div> -->
+            <div class="row-box-container buy-sell aq-invoice">
+              <!-- <div class="disable-trade-content">
+                <p>Buy directly from Orderbook</p>
+                <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
+              </div> -->
+              <div class="row-box">
+                <div class="row-header trn">Buy</div>
+                <div id="buy"></div>
+              </div>
+              <div class="row-box border-left">
+                <div class="row-header trn">Sell</div>
+                <div id="sell"></div>
+              </div>
+            </div>
+            <div class="row-box">
+              <!-- <div class="row-header trn">order_book</div> -->
+              <div id="orders"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="row-container col-md-12">
+            <div class="row-box">
+              <div class="row-container col-md-12">
+                <div class="row-header top trn">
+                  <span class="trn">trades</span>
+                </div>
+                <div class="row-box scroll">
+                  <div id="trades"></div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="row-header trn">my_transactions</div>
+            <div class="row-box nav-header">
+              <ul class="nav nav-tabs three columns" role="tablist">
+                <li role="presentation" class="active"><a href="#myTrades" aria-controls="myTrades" role="tab"
+                    data-toggle="tab" class="trn">trades</a></li>
+                <li role="presentation"><a href="#myOrders" aria-controls="myOrders" role="tab" data-toggle="tab"
+                    class="trn">orders</a></li>
+                <li role="presentation"><a href="#myFunds" aria-controls="myFunds" role="tab" data-toggle="tab"
+                    class="trn">funds</a></li>
+              </ul>
+            </div>
+            <div class="row-box">
+              <div class="row-box height2 custom-height scroll">
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane active" id="myTrades"></div>
+                  <div role="tabpanel" class="tab-pane" id="myOrders"></div>
+                  <div role="tabpanel" class="tab-pane" id="myFunds"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-3">
+          
+      </div> -->
+      </div>
+
+      <div id="buyTrade"></div>
+      <div id="sellTrade"></div>
+      <div id="importAccount"></div>
+      <div id="otherToken"></div>
+      <div id="gasPrice"></div>
+      <div id="tokenGuide"></div>
+      <div id="screencast"></div>
+      <div id="ledger"></div>
+      <script src="/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+      <script src="/js/jquery.translate.js" type="text/javascript"></script>
+      <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+      <script src="/js/alertify.min.js" type="text/javascript"></script>
+      <script src="/js/ejs_production.js" type="text/javascript"></script>
+      <script src="/js/chrome-u2f-api.js" type="text/javascript"></script>
+      <script src="/js/ledger.min.js" type="text/javascript"></script>
+      <script src="/js/tokenDetails.js" type="text/javascript"></script>
+      <script src="/js/main-unminified.js" type="text/javascript"></script>
+
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143874949-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-143874949-1');
+      </script>
+
+      <script>
+        window.twttr = (function (d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+
+          t._e = [];
+          t.ready = function (f) {
+            t._e.push(f);
+          };
+
+          return t;
+        }(document, "script", "twitter-wjs"));
+      </script>
+
+      <script>
+        function embedTwitter(theme) {
+          $('.twitter-timeline').remove();
+          twttr.widgets.createTimeline({
+              sourceType: 'profile',
+              screenName: 'EdexExchange'
+            },
+            document.getElementById('updates'), {
+              theme: theme,
+              chrome: 'transparent'
+            }
+          )
+        }
+        twttr.ready(function () {
+          embedTwitter('dark')
+        })
+      </script>
+      <script>
+        document.querySelector('button[data-target="#bs-example-navbar-collapse-1"]').addEventListener('click',
+          function () {
+            if (!document.querySelector('#bs-example-navbar-collapse-1').classList.contains('in')) {
+              document.querySelector('.navbar.navbar-default.navbar-fixed-top').classList.add('overlay')
+            } else {
+              document.querySelector('.navbar.navbar-default.navbar-fixed-top').classList.remove('overlay')
+            }
+          });
+        document.getElementById('tokensDropdown').addEventListener('click', function () {
+          document.querySelector('body').classList.toggle('sidebar-show')
+          document.querySelector('body').classList.toggle('alertify')
+        });
+        document.querySelector('.sidebar-toggle-fade.ajs-dimmer').addEventListener('click', function () {
+          document.querySelector('body').classList.remove('sidebar-show')
+          document.querySelector('body').classList.remove('alertify')
+        });
+      </script>
+
+
+
+
+    </div>
+</body>
+
+</html>

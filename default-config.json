@@ -1,0 +1,34 @@
+{
+    "contractEDEX": "smart_contract/edex.sol",
+    "contractToken": "smart_contract/token.sol",
+    "contractReserveToken": "smart_contract/reservetoken.sol",
+    "contractEDEXAddrs": [
+      { "addr": "", "info": "MAINNET SMART CONTRACT" }
+    ],
+    "ethTestnet": false,
+    "ethChainId": 1,
+    "ethProvider": "http://localhost:8545",
+    "ethGasPrice": 4000000000,
+    "ethAddr": "0x0000000000000000000000000000000000000000",
+    "ethAddrPrivateKey": "",
+    "gasApprove": 250000,
+    "gasDeposit": 250000,
+    "gasWithdraw": 250000,
+    "gasTrade": 250000,
+    "gasOrder": 250000,
+    "minOrderSize": 0.00001,
+    "socketServer": "",
+    "userCookie": "EDEX",
+    "eventsCacheCookie": "EDEX_eventsCache",
+    "ordersCacheCookie": "EDEX_ordersCache",
+    "etherscanAPIKey": "",
+    "ledgerPath": "m/44'/60'/0'/0",
+    "bases": [
+      { "addr": "0x0000000000000000000000000000000000000000", "name": "ETH", "fullName": "Ethereum", "decimals": 18 }
+    ],
+    "tokens": [
+        { "addr": "0x0000000000000000000000000000000000000000", "name": "SYMBOL", "fullName": "TOKEN NAME", "decimals": 18 }
+    ],
+    "defaultPair": { "token": "SYMBOL", "base": "ETH" }
+  }
+  
